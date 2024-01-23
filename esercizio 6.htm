@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrati 10x10</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
 
+        td {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+        }
+
+        .even {
+            background-color: #ddd;
+            margin: 2px;
+        }
+
+        .odd {
+            background-color: #666;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Creazione della tabella HTML
+        document.write('<table>');
+
+        for (let i = 1; i <= 100; i++) {
+            // Creazione di una nuova riga ogni 10 elementi
+            if ((i - 1) % 10 === 0) {
+                document.write('</tr><tr>');
+            }
+
+            // Verifica se il numero è pari o dispari
+            if (i % 2 === 0) {
+                // Numero pari: quadrato con sfondo grigio chiaro
+                document.write('<td class="even"></td>');
+            } else {
+                // Numero dispari: quadrato con sfondo grigio scuro
+                document.write('<td class="odd"></td>');
+            }
+        }
+
+        document.write('</tr></table>');
+    </script>
+</body>
+</html>
