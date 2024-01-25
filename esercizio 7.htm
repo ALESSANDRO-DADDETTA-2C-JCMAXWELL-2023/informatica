@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrati 10x10</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
 
+        td {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        .even {
+            background-color: #ddd;
+            margin: 2px;
+        }
+
+        .odd {
+            background-color: #666;
+            margin: 2px;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.write('<table>');
+
+        for (let i = 1; i <= 100; i++) {
+            if ((i - 1) % 10 === 0) {
+                document.write('</tr><tr>');
+            }
+
+            if (i % 2 === 0) {
+                // Numero casuale tra 0 e 1
+                const randomNumber = Math.floor(Math.random() * 2);
+                
+                if (randomNumber === 0) {
+                    // Inserisci l'URL dell'icona desiderata
+                    document.write('<td class="even"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg" alt="Icona 1"></td>');
+                } else {
+                    document.write('<td class="even"></td>');
+                }
+            } else {
+                const randomNumber = Math.floor(Math.random() * 2);
+                
+                if (randomNumber === 0) {
+                    // Inserisci l'URL dell'icona desiderata
+                    document.write('<td class="odd"><img src="https://esperia.tv/wp-content/uploads/2022/12/pallone-di-messi.png" alt="Icona 2"></td>');
+                } else {
+                    document.write('<td class="odd"></td>');
+                }
+            }
+        }
+
+        document.write('</tr></table>');
+    </script>
+</body>
+</html>
