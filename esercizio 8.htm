@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrati 10x10</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
 
+        td {
+            width: 120px;
+            height: 50px;
+            border: 1px solid #000;
+            text-align: center;
+            position: relative;
+        }
+
+        .even {
+            background-color: #ddd;
+            margin: 2px;
+        }
+
+        .odd {
+            background-color: #666;
+            margin: 2px;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            cursor: pointer;
+        }
+
+        .counter-container {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+
+        .counter {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <div class="counter" id="pizzaCounter">Pizza: 0</div>
+        <div class="counter" id="bombCounter">Bomba: 0</div>
+    </div>
+
+    <script>
+        // Variabili per tenere traccia dei clic
+        let pizzaCount = 0;
+        let bombCount = 0;
+
+        document.write('<table>');
+
+        for (let i = 1; i <= 100; i++) {
+            if ((i - 1) % 10 === 0) {
+                document.write('</tr><tr>');
+            }
+
+            if (i % 2 === 0) {
+                const randomNumber = Math.floor(Math.random() * 2);
+                
+                if (randomNumber === 0) {
+                    document.write('<td class="even"><img src="https://lh3.googleusercontent.com/drive-storage/ANtge_EkCIdN1Qlwny66lhQVjydDkh-MTSHE60_3ss2Lg7A0vOhg-FuUBG0mPHHcH4y9VdkmwP3qMsd7Qg-GGaqMsJPj7QltrbcpDfM2NdcfxA=w1920-h953" alt="Icona 1" onclick="countPizza()"></td>');
+                } else {
+                    document.write('<td class="even"></td>');
+                }
+            } else {
+                const randomNumber = Math.floor(Math.random() * 2);
+                
+                if (randomNumber === 0) {
+                    document.write('<td class="odd"><img src="https://lh3.googleusercontent.com/drive-storage/ANtge_G1s938HZQyXGewz5yGPy-qqLDjJJYoBJO588k2OlspCcUn1CxHeCrBnDxePYY-ZzMu1FXIW8cn7afnWQZEVa2nUK3MpVhDlOAaKJQ-7A=w1920-h953" alt="Icona 2" onclick="countBomb()"></td>');
+                } else {
+                    document.write('<td class="odd"></td>');
+                }
+            }
+        }
+
+        document.write('</tr></table>');
+
+        // Funzioni per contare i clic
+        function countPizza() {
+            pizzaCount++;
+            updateCounter('pizzaCounter', pizzaCount);
+        }
+
+        function countBomb() {
+            bombCount++;
+            updateCounter('bombCounter', bombCount);
+        }
+
+        function updateCounter(counterId, count) {
+            // Trova l'elemento con l'ID specificato e aggiorna il suo contenuto
+            document.getElementById(counterId).textContent = counterId.split('Counter')[0] + ': ' + count;
+        }
+    </script>
+</body>
+</html>
