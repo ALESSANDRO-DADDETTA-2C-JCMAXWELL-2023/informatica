@@ -1,1 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore IMC</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
 
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <label for="peso">Inserisci il tuo peso in kg:</label>
+    <input type="number" id="peso">
+</div>
+
+<div>
+    <label for="altezza">Inserisci la tua altezza in metri:</label>
+    <input type="number" id="altezza">
+</div>
+
+<button onclick="calcolaIMC()">Calcola IMC</button>
+
+<table id="risultati" style="display: none;">
+    <tr>
+        <th>Risultati</th>
+        <th>Valore</th>
+    </tr>
+    <tr>
+        <td>IMC</td>
+        <td id="risultatoIMC"></td>
+    </tr>
+    <tr>
+        <td>Classificazione</td>
+        <td id="classificazione"></td>
+    </tr>
+</table>
+
+<script>
+    function calcolaIMC() {
+        // Recupera i valori di peso e altezza
+        var peso = parseFloat(document.getElementById("peso").value);
+        var altezza = parseFloat(document.getElementById("altezza").value);
+
+        // Calcola l'IMC
+        var imc = peso / (altezza * altezza);
+
+        // Classificazione del peso
+        var classificazione = "";
+        if (imc < 18.5) {
+            classificazione = "Sottopeso";
+        } else if (imc >= 18.5 && imc < 25) {
+            classificazione = "Normopeso";
+        } else if (imc >= 25 && imc < 30) {
+            classificazione = "Sovrappeso";
+        } else {
+            classificazione = "Obesità";
+        }
+
+        // Mostra i risultati nella tabella
+        document.getElementById("risultatoIMC").textContent = imc.toFixed(2);
+        document.getElementById("classificazione").textContent = classificazione;
+        document.getElementById("risultati").style.display = "table";
+    }
+</script>
+
+</body>
+</html>
