@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore Area Cerchio</title>
+</head>
+<body>
 
+<div>
+    <label for="raggio">Inserisci il raggio del cerchio:</label>
+    <input type="number" id="raggio">
+</div>
+
+<button onclick="calcolaArea()">Calcola Area</button>
+
+<p id="risultato" style="display: none;">L'area del cerchio è: <span id="area"></span></p>
+
+<script>
+    function calcolaArea() {
+        // Recupera il valore del raggio
+        var raggio = parseFloat(document.getElementById("raggio").value);
+
+        // Calcola l'area del cerchio
+        var area = Math.PI * Math.pow(raggio, 2);
+
+        // Mostra il risultato
+        document.getElementById("area").textContent = area.toFixed(2);
+        document.getElementById("risultato").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
