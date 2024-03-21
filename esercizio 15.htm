@@ -22,8 +22,9 @@
         cursor: pointer;
         border-radius: 12px;
     }
-    
-
+    #addedDrink {
+        margin-top: 20px;
+    }
 </style>
 </head>
 <body>
@@ -32,6 +33,8 @@
 <button class="button" onclick="add()">Add</button>
 <button class="button" onclick="deleteDrink()">Delete</button>
 <button class="button" onclick="buy()">Buy</button>
+
+<div id="addedDrink"></div>
 
 <script>
     // Array dei drink
@@ -50,8 +53,14 @@
         let newDrink = prompt("Inserisci il nome del nuovo drink:");
         drinkArray.push(newDrink);
         alert(newDrink + " è stato aggiunto con successo!");
+        displayAddedDrink(newDrink); // Chiamata alla funzione per visualizzare il nuovo drink
     }
 
+    // Funzione per visualizzare il nuovo drink aggiunto
+    function displayAddedDrink(drink) {
+        let addedDrinkDiv = document.getElementById("addedDrink");
+        addedDrinkDiv.innerHTML = "<p>Nuovo drink aggiunto: " + drink + "</p>";
+    }
     
     function deleteDrink() {
         let drinkToDelete = prompt("Inserisci il nome del drink da eliminare:");
