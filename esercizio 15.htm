@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar Versione 1</title>
+<p>1= Coca-Cola</p>
+<p>2= Sprite</p>
+<p>3= Fanta</p>
+<p>4= Acqua</p>
+<style>
+    .button {
+        background-color: #4c54af;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+    
+
+</style>
+</head>
+<body>
+
+<button class="button" onclick="contaElementi()">Conta Elementi</button>
+<button class="button" onclick="add()">Add</button>
+<button class="button" onclick="deleteDrink()">Delete</button>
+<button class="button" onclick="buy()">Buy</button>
+
+<script>
+    // Array dei drink
+    let drinkArray = ["Coca-Cola", "Sprite", "Fanta", "Acqua"];
+
+    // Array degli ordini
+    let orderArray = [];
+
+    
+    function contaElementi() {
+        alert("Numero di drink disponibili: " + drinkArray.length);
+    }
+
+   
+    function add() {
+        let newDrink = prompt("Inserisci il nome del nuovo drink:");
+        drinkArray.push(newDrink);
+        alert(newDrink + " è stato aggiunto con successo!");
+    }
+
+    
+    function deleteDrink() {
+        let drinkToDelete = prompt("Inserisci il nome del drink da eliminare:");
+        let index = drinkArray.indexOf(drinkToDelete);
+        if (index !== -1) {
+            drinkArray.splice(index, 1);
+            alert(drinkToDelete + " è stato eliminato con successo!");
+        } else {
+            alert("Il drink inserito non è presente nella lista.");
+        }
+    }
+
+    
+    function buy() {
+        let drinkNumber = prompt("Inserisci il numero corrispondente al drink che vuoi ordinare:");
+        orderArray.push(drinkArray[drinkNumber - 1]);
+        alert("Hai ordinato: " + drinkArray[drinkNumber - 1]);
+    }
+</script>
+
+</body>
+</html>
