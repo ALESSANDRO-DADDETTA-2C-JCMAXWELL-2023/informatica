@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generatore di Frasi</title>
+<style>
+    button {
+        margin: 5px;
+    }
+</style>
+</head>
+<body>
+<h1>Generatore di Frasi</h1>
+
+<button onclick="aggiungiSoggetto()">Aggiungi Soggetto</button>
+<button onclick="aggiungiVerbo()">Aggiungi Verbo</button>
+<button onclick="aggiungiComplemento()">Aggiungi Complemento</button>
+
+<hr>
+
+<h2>Soggetti</h2>
+<ul id="soggettiList"></ul>
+
+<h2>Verbi</h2>
+<ul id="verbiList"></ul>
+
+<h2>Complementi</h2>
+<ul id="complementiList"></ul>
+
+<hr>
+
+<button onclick="generaFrase()">Genera Frase</button>
+<button onclick="generaFraseCasuale()">Genera Frase Casuale</button>
+
+<hr>
+
+<div id="frasiGenerate"></div>
+
+<script>
+    let soggetti = [];
+    let verbi = [];
+    let complementi = [];
+
+    function aggiungiSoggetto() {
+        const soggetto = prompt("Inserisci un soggetto:");
+        soggetti.push(soggetto);
+        aggiornaLista("soggettiList", soggetti);
+    }
+
+    function aggiungiVerbo() {
+        const verbo = prompt("Inserisci un verbo:");
+        verbi.push(verbo);
+        aggiornaLista("verbiList", verbi);
+    }
+
+    function aggiungiComplemento() {
+        const complemento = prompt("Inserisci un complemento:");
+        complementi.push(complemento);
+        aggiornaLista("complementiList", complementi);
+    }
+
+    function aggiornaLista(id, array) {
+        const list = document.getElementById(id);
+        list.innerHTML = "";
+        array.forEach(item => {
+            const li = document.createElement("li");
+            li.textContent = item;
+            list.appendChild(li);
+        });
+    }
+
+    function generaFrase() {
+        if (soggetti.length === 0 || verbi.length === 0 || complementi.length === 0) {
+            alert("Devi inserire almeno un soggetto, un verbo e un complemento.");
+            return;
+        }
+        const frase = `${soggetti[0]} ${verbi[0]} ${complementi[0]}.`;
+        mostraFrase(frase);
+    }
+
+    function generaFraseCasuale() {
+        if (soggetti.length === 0 || verbi.length === 0 || complementi.length === 0) {
+            alert("Devi inserire almeno un soggetto, un verbo e un complemento.");
+            return;
+        }
+        const soggettoRandom = soggetti[Math.floor(Math.random() * soggetti.length)];
+        const verboRandom = verbi[Math.floor(Math.random() * verbi.length)];
+        const complementoRandom = complementi[Math.floor(Math.random() * complementi.length)];
+        const fraseCasuale = `${soggettoRandom} ${verboRandom} ${complementoRandom}.`;
+        mostraFrase(fraseCasuale);
+    }
+
+    function mostraFrase(frase) {
+        const frasiGenerateDiv = document.getElementById("frasiGenerate");
+        const p = document.createElement("p");
+        p.textContent = frase;
+        frasiGenerateDiv.appendChild(p);
+    }
+</script>
+</body>
+</html>
