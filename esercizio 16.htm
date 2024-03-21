@@ -84,10 +84,11 @@
             alert("Devi inserire almeno un soggetto, un verbo e un complemento.");
             return;
         }
-        const soggettoRandom = soggetti[Math.floor(Math.random() * soggetti.length)];
-        const verboRandom = verbi[Math.floor(Math.random() * verbi.length)];
-        const complementoRandom = complementi[Math.floor(Math.random() * complementi.length)];
-        const fraseCasuale = `${soggettoRandom} ${verboRandom} ${complementoRandom}.`;
+        const soggettiRandom = shuffleArray(soggetti);
+        const verbiRandom = shuffleArray(verbi);
+        const complementiRandom = shuffleArray(complementi);
+
+        const fraseCasuale = `${soggettiRandom[0]} ${verbiRandom[0]} ${complementiRandom[0]}.`;
         mostraFrase(fraseCasuale);
     }
 
@@ -96,6 +97,14 @@
         const p = document.createElement("p");
         p.textContent = frase;
         frasiGenerateDiv.appendChild(p);
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
 </script>
 </body>
