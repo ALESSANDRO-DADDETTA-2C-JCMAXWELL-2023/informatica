@@ -1,1 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QUADRATI CON NUMERI COLORATI</title>
+  <style>
+    .square {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .red-dark {
+      background-color: darkred;
+      color: white;
+    }
+    .blue-light {
+      background-color: rgb(39, 18, 228);
+    }
+    .yellow {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div id="container" style="display: flex; flex-wrap: wrap;"></div>
 
+  <script>
+    // Funzione per verificare se un numero è primo
+    function isPrime(n) {
+      let bPrime = true;
+      let fat = 2;
+      while (fat <= n / 2) {
+        if (n % fat === 0) {
+          bPrime = false;
+        }
+        fat++;
+      }
+      return bPrime;
+    }
+
+    // Creazione dell'array con numeri consecutivi a partire da 1000
+    const numbers = [];
+    for (let i = 1000; i < 2000; i++) {
+      numbers.push(i);
+    }
+
+    // Funzione per creare i quadrati e colorarli in base alle condizioni richieste
+    function createSquares() {
+      const container = document.getElementById('container');
+      for (let i = 0; i < 1000; i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        square.textContent = numbers[i];
+
+        if (numbers[i] % 2 === 0) {
+          square.classList.add('red-dark');
+        } else {
+          square.classList.add('blue-light');
+        }
+
+        if (numbers[i] % 7 === 0) {
+          square.style.backgroundColor = 'lightcoral';
+        }
+
+        if (isPrime(numbers[i])) {
+          square.classList.add('yellow');
+        }
+
+        container.appendChild(square);
+      }
+    }
+
+    // Chiamata alla funzione per creare i quadrati
+    createSquares();
+  </script>
+</body>
+</html>
