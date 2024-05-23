@@ -1,0 +1,40 @@
+<!--Esercizio 1:Crea un programma che chiede un numero n e crea con un ciclo for n quadrati.-->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrati</title>
+    <style>
+        .square {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <input type="number" id="numberInput" placeholder="Inserisci un numero">
+    <button onclick="createSquares()">Crea Quadrati</button>
+    <div id="squaresContainer"></div>
+
+
+    <script>
+       function createSquares() {
+            const n = document.getElementById('numberInput').value;
+            const container = document.getElementById('squaresContainer');
+            container.innerHTML = '';  
+            for (let i = 0; i < n; i++) {
+                const square = document.createElement('div');
+                square.className = 'square';
+                container.appendChild(square);
+            }
+        }
+    </script>
+   
+</body>
+</html>
