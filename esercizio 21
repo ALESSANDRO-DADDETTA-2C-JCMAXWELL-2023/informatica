@@ -1,0 +1,50 @@
+<!--Esercizio 2:Inserire nei quadrati un numero casuale intero compreso tra 100 e 200 e colorare di blu lo sfondo dei quadrati che contengono un numero multiplo di 10.-->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrati con Numeri Casuali</title>
+    <style>
+        .square {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .blue {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <input type="number" id="numberInput" placeholder="Inserisci un numero">
+    <button onclick="createSquares()">Crea Quadrati</button>
+    <div id="squaresContainer"></div>
+
+
+    <script>
+        function createSquares() {
+            const n = document.getElementById('numberInput').value;
+            const container = document.getElementById('squaresContainer');
+            container.innerHTML = '';
+            for (let i = 0; i < n; i++) {
+                const square = document.createElement('div');
+                square.className = 'square';
+                const randomNumber = Math.floor(Math.random() * 101) + 100;
+                square.textContent = randomNumber;
+                if (randomNumber % 10 === 0) {
+                    square.classList.add('blue');
+                }
+                container.appendChild(square);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
