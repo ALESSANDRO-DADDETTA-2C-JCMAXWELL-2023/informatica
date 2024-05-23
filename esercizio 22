@@ -1,0 +1,88 @@
+<!--Esercizio 3:Creare un programma che stampi 1000 quadrati con numeri che vanno da 1 a 1000 e colorare di rosso chiaro lo sfondo dei numeri primi.
+I numeri primi nei quadrati sono dei link che portano a un'altra pagina con la scritta "prime number".-->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUMERI PRIMI</title>
+    <style>
+        .square {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .prime {
+            background-color: lightcoral;
+        }
+        .prime a {
+            color: red;
+            text-decoration: none;
+        }
+        .hidden {
+            display: none;
+        }
+        #primeNumberPage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 100px;
+            color: rgb(47, 0, 220);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainPage">
+        <button onclick="createSquares()">CREA I QUADRATI</button>
+        <div id="squaresContainer"></div>
+    </div>
+   
+    <div id="primeNumberPage" class="hidden">
+        PRIME NUMBER
+    </div>
+
+
+    <script>
+        function isPrime(num) {
+            if (num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+
+        function showPrimeNumberPage() {
+            document.getElementById('mainPage').classList.add('hidden');
+            document.getElementById('primeNumberPage').classList.remove('hidden');
+        }
+
+
+        function createSquares() {
+            const container = document.getElementById('squaresContainer');
+            container.innerHTML = '';  // Pulire il contenitore
+            for (let i = 1; i <= 1000; i++) {
+                const square = document.createElement('div');
+                square.className = 'square';
+                if (isPrime(i)) {
+                    const link = document.createElement('a');
+                    link.href = "#";
+                    link.onclick = showPrimeNumberPage;
+                    link.textContent = i;
+                    square.classList.add('prime');
+                    square.appendChild(link);
+                } else {
+                    square.textContent = i;
+                }
+                container.appendChild(square);
+            }
+        }
+    </script>
+</body>
+</html>
